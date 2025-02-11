@@ -38,6 +38,8 @@
 
 <body class="body-wrapper"  id="home">
 
+	
+
 
 <!--========================================
 =            Navigation Section            =
@@ -702,32 +704,158 @@
 
 <section class="section contact-form" id="inscricao">
 	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="section-title">
-					<h3>Formulário de <span class="alternate">Inscrição</span></h3>
+		<div class="registration-block bg-registration overlay-dark">
+			<div class="block">				
+				<div class="row">
+					<div class="col-12">
+						<div class="section-title">
+							<h3>Formulário de <span class="alternate">Inscrição</span></h3>
+						</div>
+					</div>
 				</div>
+				<form action="enviar.php" method="post" enctype="multipart/form-data" class="row">
+					<!-- <input type="text" class="form-control main" placeholder="Your Name" required> -->
+					<div class="col-md-4">
+						<div class="form-group">
+							<!--<select class="form-control main" id="categoria" onchange="onChangeCategoria(this)" name="categoria" title="Selecione a categoria de inscrição." readonly disabled="true" required>
+								<option value="">CATEGORIA</option>
+								<option value="CATEGORIA I">CATEGORIA I - Interpretação</option>
+								<option value="CATEGORIA II">CATEGORIA II - Música Autoral</option>
+							</select> -->
+							<font class="titulo">CATEGORIA</font>
+							<input type="text" class="form-control main" id="categoria" name="categoria" disabled="true" value="CATEGORIA - Interpretação" placeholder="Categoria única - Interpretação - Músicas não inéditas - Músicas já gravadas e editadas" required>
+						</div>
+					</div>
+					<!-- <input type="text" class="form-control main" placeholder="Your Name" required> -->
+					<div class="col-md-4">
+						<div class="form-group">
+							<font class="titulo">POLO</font>
+							<select class="form-control main" id="polo" name="polo" title="Selecione o polo de inscrição." required>
+								<option value="">POLO</option>
+								<option value="NATAL">NATAL</option>
+								<option value="MOSSORO">MOSSORÓ</option>
+								<option value="CAICO">CAICÓ</option>
+							</select>
+						</div>
+					</div>
+					<!-- <input type="text" class="form-control main" placeholder="Your Name" required> -->
+					<div class="col-md-4">
+						<div class="form-group">
+							<font class="titulo">TIPO DE INSCRIÇÃO</font>
+							<select class="form-control main" id="tipo_inscricao" name="tipo_inscricao" title="Selecione o tipo de inscricão" onchange="onChangeTipoInscricao(this)" required>
+								<option value="">TIPO DE INSCRIÇÃO</option>
+								<option value="EMPREGADOR">EMPREGADOR</option>
+								<option value="INDUSTRIARIO">INDUSTRIÁRIO</option>
+								<option value="DEPENDENTE">DEPENDENTE</option>
+								<option value="CONJUGE">CÔNJUGE</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<font class="titulo">NOME</font>
+						<input type="text" class="form-control main" name="nome" placeholder="Nome" title="Insira seu nome completo." required>
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">NOME ARTÍSTICO</font>
+						<input type="text" class="form-control main" name="nome_artistico" placeholder="Nome Artístico" title="Insira seu nome artístico." required>
+					</div>
+					<div class="col-md-3">
+						<font class="titulo">CPF</font>
+						<input type="text" class="form-control main" name="cpf" id="cpf" placeholder="CPF" maxlength="14" max="14" title="Insira o seu CPF" required>
+					</div>
+					<div class="col-md-3">
+						<font class="titulo">DATA DE NASCIMENTO</font>
+						<input type="text" class="form-control main" name="data_nascimento" id="data_nascimento" placeholder="Data Nascimento" maxlength="10" max="10" title="Insira sua data de nascimento" required>
+					</div>
+					<div class="col-md-3">
+						<font class="titulo">TELEFONE</font>
+						<input type="text" class="form-control main" name="telefone" id="telefone" placeholder="Telefone" maxlength="14" max="14" title="Insira seu telefone" required>
+					</div>
+					<div class="col-md-3">
+						<font class="titulo">EMAIL</font>
+						<input type="email" class="form-control main" name="email" placeholder="Email" title="Insira seu email" required>
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">ENDEREÇO</font>
+						<input type="text" class="form-control main" name="endereco" placeholder="Endereço" title="Insira seu endereço" required>
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">EMPRESA</font>
+						<input type="text" class="form-control main" name="empresa" placeholder="Empresa" title="Insira o nome da empresa" required>
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">CARGO</font>
+						<input type="text" class="form-control main" name="cargo" id="cargo" placeholder="Cargo" title="Insira seu cargo" disabled="true">
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">MATRÍCULA</font>
+						<input type="text" class="form-control main" name="matricula" id="matricula" placeholder="Matrícula" title="Insira sua matrícula" disabled="true">
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">MÚSICA</font>
+						<input type="text" class="form-control main" name="musica" placeholder="Música" title="Nome da Música" required>
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">COMPOSITOR</font>
+						<input type="text" class="form-control main" name="compositor" placeholder="Compositor" title="Insira o nome do compositor da música" required>
+					</div>
+					<div class="col-md-6">
+						<font class="titulo">LINK DO YOUTUBE</font>
+						<input type="text" class="form-control main" name="link_youtube" placeholder="" title="Insira o link da sua versão da música do youtube">
+					</div>
+					<div class="col-md-6" id="contrato_social" onchange="return validarArquivo(this)">
+						<font class="titulo">CONTRATO SOCIAL</font>
+						<input type="file" class="form-control main" name="contrato_social" id="contrato_social_arquivo" accept="application/pdf" title="Cópia do Contrato social da empresa, quando o candidato for empregador." disabled="true">
+					</div>
+					<div class="col-md-6" id="dependente" onchange="return validarArquivo(this)">
+						<font class="titulo">DOCUMENTO DEPENDENTE</font>
+						<input type="file" class="form-control main" name="doc_dependente" id="dependente_arquivo" title="Cópia da Carteira de Identidade do dependente (filho ou cônjuge) ou cópia da Certidão de Nascimento ou cópia da Certidão de Casamento (cônjuge) ou Declaração convivência marital autenticada em Cartório (cônjuge)." disabled="true">
+					</div>
+					<div class="col-md-6" id="identidade_profissional" onchange="return validarArquivo(this)">
+						<font class="titulo">COMPROVANTE DE VÍNCULO EMPREGATÍCIO</font>
+						<input type="file" class="form-control main" name="id_profissional" id="identidade_profissional_arquivo" title="Cópia da carteira de trabalho ou Contracheque ou Contrato de trabalho ou Crachá." required>
+					</div>
+					<div class="col-md-6" id="rg_cnh" onchange="return validarArquivo(this)">
+						<font class="titulo">RG OU CNH</font>
+						<input type="file" class="form-control main" multiple="multiple" name="rg_cnh[]" id="rg_cnh_arquivo" title="Seleciona os arquivos da Cédula de identidade ou Carteira Nacional de Habilitação (CNH)." required>
+					</div>
+					<div class="col-md-6" id="comprovante_residencia" onchange="return validarArquivo(this)">
+						<font class="titulo">COMPROVANTE DE RESIDÊNCIA</font>
+						<input type="file" class="form-control main" name="comprovante_residencia" id="comprovante_residencia_arquivo" title="Comprovante de residência com data inferior a três meses." required>
+					</div>
+					<!--<div class="col-md-6" id="letra_cifrada" onchange="return validarArquivo(this)" style="display: none;">
+						<font class="titulo">LETRA CIFRADA (OPCIONAL)</font>
+						<input type="file" class="form-control main" name="letra_cifrada" id="letra_cifrada_arquivo" title="Para músicas autorais, letra cifrada (opcional).">
+					</div> -->
+					<!--<div class="col-md-6">
+						<label>
+							<input type="checkbox" required>
+								<font color="#000">
+									Estou ciente de que, para concluir minha inscrição, enviarei o áudio ou vídeo da música através do número de WhatsApp fornecido nesta página após a submissão do formulário.
+								</font>
+						</label>
+					</div> -->
+
+					<div class="col-md-6">
+						<label>
+							<input type="checkbox" required>
+								<font color="#000">
+									Está ciente da obrigatoriedade do uso da banda base disponibilizada pelo SESI/RN?
+								</font>
+						</label>
+					</div>
+
+					
+					<div class="col-12">
+						<button type="submit" class="btn btn-main-md" name="" value="ENVIAR">ENVIAR</button>
+					</div>
+				</form>
 			</div>
-		</div>
-		<form action="#" class="row">
-			<div class="col-md-6">
-				<input type="text" class="form-control main" name="nome" id="nome" placeholder="Nome Completo">
-			</div>
-			<div class="col-md-6">
-				<input type="text" class="form-control main" name="nomeartistico" id="nomeartistico" placeholder="Nome Artístico">
-			</div>
-			<div class="col-md-6">
-				<input type="email" class="form-control main" name="email" id="email" placeholder="Email">
-			</div>
-			<div class="col-md-6">
-				<input type="text" class="form-control main" name="telefone" id="telefone" placeholder="Telefone">
-			</div>
-			
-			<div class="col-12 text-center">
-				<button type="submit" class="btn btn-main-md">ENVIAR</button>
-			</div>
-		</form>
+		</div>		
 	</div>
+
+	
 </section>
 
 
@@ -767,6 +895,260 @@
     </div>
   </div>
 </footer>
+
+<!-- BEGIN GADWP v5.1.1.1 Universal Analytics - https://deconf.com/google-analytics-dashboard-wordpress/ -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-5520715-2', 'auto');
+	ga('send', 'pageview');
+</script>
+<!-- END GADWP Universal Analytics -->
+
+<script type='text/javascript'>
+	//alert('ATENÇÃO!!!! ESTÁ DISPONÍVEL O RESULTADO DAS SEMIFINAIS DO POLO NATAL');
+	window.onload = (event) => {
+		let myAlert = document.querySelector('.toast');
+		let bsAlert = new bootstrap.Toast(myAlert);
+
+		bsAlert.show();
+	}
+</script>
+
+<script type='text/javascript' /*src='js/jquery.js'*/>
+	
+	// OBSOLETA
+	function onChangeCategoria( categoriaSelect ){
+		if( categoriaSelect.value == 'CATEGORIA II' ){
+			let letra_cifrada = document.getElementById('letra_cifrada');
+			letra_cifrada.style.display = 'block';
+
+		}else{
+			let letra_cifrada = document.getElementById('letra_cifrada');
+			letra_cifrada.style.display = 'none';
+
+		}
+	}
+
+	function onChangeTipoInscricao( tipoInscricaoSelect ){
+		if( tipoInscricaoSelect.value == 'INDUSTRIARIO' ){
+			document.getElementById('cargo').disabled = false;
+			document.getElementById('cargo').required = true;
+
+			document.getElementById('matricula').disabled = false;
+			document.getElementById('matricula').required = true;
+
+			document.getElementById('contrato_social_arquivo').disabled = true;
+			document.getElementById('contrato_social_arquivo').required = false;
+
+			document.getElementById('dependente_arquivo').disabled = true;
+			document.getElementById('dependente_arquivo').required = false;
+			
+		}else if( tipoInscricaoSelect.value == 'EMPREGADOR' ){
+			document.getElementById('cargo').disabled = false;
+			document.getElementById('cargo').required = true;
+
+			document.getElementById('matricula').disabled = false;
+			document.getElementById('matricula').required = true;
+
+			document.getElementById('contrato_social_arquivo').disabled = false;
+			document.getElementById('contrato_social_arquivo').required = true;
+
+			document.getElementById('dependente_arquivo').disabled = true;
+			document.getElementById('dependente_arquivo').required = false;
+			
+						
+		}else if( tipoInscricaoSelect.value == 'DEPENDENTE' || tipoInscricaoSelect.value == 'CONJUGE' ){
+			document.getElementById('cargo').disabled = true;
+			document.getElementById('cargo').required = false;
+			document.getElementById('cargo').value = "NÃO SE APLICA";
+
+			document.getElementById('matricula').disabled = true;
+			document.getElementById('matricula').required = false;
+			document.getElementById('matricula').value = "NÃO SE APLICA";
+
+			document.getElementById('contrato_social_arquivo').disabled = true;
+			document.getElementById('contrato_social_arquivo').required = false;
+
+			document.getElementById('dependente_arquivo').disabled = false;
+			document.getElementById('dependente_arquivo').required = true;
+
+		}else{
+			document.getElementById('cargo').disabled = true;
+			document.getElementById('cargo').required = false;
+			document.getElementById('cargo').value = "NÃO SE APLICA";
+
+			document.getElementById('matricula').disabled = true;
+			document.getElementById('matricula').required = false;
+			document.getElementById('matricula').value = "NÃO SE APLICA";
+
+			document.getElementById('contrato_social_arquivo').disabled = true;
+			document.getElementById('contrato_social_arquivo').required = false;
+
+			document.getElementById('dependente_arquivo').disabled = false;
+			document.getElementById('dependente_arquivo').required = true;
+
+		}
+	}
+	
+	function validarArquivo( elemento ){
+		
+		const TAM_PDF_PERMITIDO = 4 * 1024 * 1024;
+		const TAM_IMAGEM_PERMITIDO = 4 * 1024 * 1024;
+		const TAM_VIDEO_PERMITIDO = 20 * 1024 * 1024;
+
+		//console.log(elemento.getAttribute('id'));
+
+		var arquivoInput = '';
+		//var extensoesPermitidas = /(.jpg|.jpeg|.png|.gif)$/i;
+		var extensoesPermitidas = /(.jpg|.jpeg|.png|.pdf)$/i;;
+		var msgErroExt = "Por favor envie um arquivo que tenha a extensão .pdf, .jpg, .jpeg ou .png .";
+		var msgErroTamArq = "Tamanho máximo do arquivo deve ser 4 MB!";
+		var tamanhoPermitido = TAM_IMAGEM_PERMITIDO;
+
+		if( elemento.getAttribute('id') == 'contrato_social' ){
+			arquivoInput = document.getElementById('contrato_social_arquivo');
+			extensoesPermitidas = /(.pdf)$/i;
+			tamanhoPermitido = TAM_PDF_PERMITIDO;
+
+			// MENSAGENS SE ERRO
+			msgErroExt = 'Por favor envie um arquivo que tenha a extensão .pdf .';
+			msgErroTamArq = "Tamanho máximo do arquivo deve ser 1 MB!";
+
+		}else if( elemento.getAttribute('id') == 'identidade_profissional' ){
+			arquivoInput = document.getElementById('identidade_profissional_arquivo');
+			//var extensoesPermitidas = /(.pdf)$/i;
+			//tamanhoPermitido = TAM_IMAGEM_PERMITIDO;
+
+			// MENSAGENS SE ERRO
+			//var msgErroExt = 'Por favor envie um arquivo que tenha a extensão .pdf .';
+			//msgErroTamArq = "Tamanho máximo do arquivo deve ser 1 MB!";
+
+		}else if( elemento.getAttribute('id') == 'rg_cnh' ){
+			arquivoInput = document.getElementById('rg_cnh_arquivo');
+			//var extensoesPermitidas = /(.pdf)$/i;
+			//tamanhoPermitido = TAM_IMAGEM_PERMITIDO;
+
+			// MENSAGENS SE ERRO
+			//var msgErroExt = 'Por favor envie um arquivo que tenha a extensão .pdf .';
+			//msgErroTamArq = "Tamanho máximo do arquivo deve ser 1 MB!";
+
+		}else if( elemento.getAttribute('id') == 'comprovante_residencia' ){
+			arquivoInput = document.getElementById('comprovante_residencia_arquivo');
+			//var extensoesPermitidas = /(.pdf)$/i;
+			//tamanhoPermitido = TAM_IMAGEM_PERMITIDO;
+
+			// MENSAGENS SE ERRO
+			//var msgErroExt = 'Por favor envie um arquivo que tenha a extensão .pdf .';
+			//msgErroTamArq = "Tamanho máximo do arquivo deve ser 1 MB!";
+		}else if( elemento.getAttribute('id') == 'video_candidato' ){
+			arquivoInput = document.getElementById('video_candidato_arquivo');
+			extensoesPermitidas = /(.mp4)$/i;
+			tamanhoPermitido = TAM_VIDEO_PERMITIDO;
+
+			// MENSAGENS SE ERRO
+			msgErroExt = 'Por favor envie um arquivo que tenha a extensão .mp4 .';
+			msgErroTamArq = "Tamanho máximo do arquivo deve ser 20 MB!";
+
+		}else if( elemento.getAttribute('id') == 'dependente' ){
+			arquivoInput = document.getElementById('dependente_arquivo');
+			//var extensoesPermitidas = /(.pdf)$/i;
+			//tamanhoPermitido = TAM_IMAGEM_PERMITIDO;
+
+			// MENSAGENS SE ERRO
+			//var msgErroExt = 'Por favor envie um arquivo que tenha a extensão .pdf .';
+			//msgErroTamArq = "Tamanho máximo do arquivo deve ser 1 MB!";
+
+		}else if( elemento.getAttribute('id') == 'letra_cifrada' ){
+			arquivoInput = document.getElementById('letra_cifrada_arquivo');
+			extensoesPermitidas = /(.pdf)$/i;
+			tamanhoPermitido = TAM_PDF_PERMITIDO;
+
+			// MENSAGENS SE ERRO
+			msgErroExt = 'Por favor envie um arquivo que tenha a extensão .pdf .';
+			msgErroTamArq = "Tamanho máximo do arquivo deve ser 1 MB!";
+		}
+
+		var caminhoArquivo = arquivoInput.value;
+
+		if( !extensoesPermitidas.exec(caminhoArquivo) ){
+
+			//alert('Por favor envie um arquivo que tenha as extensões.jpeg/.jpg/.png/.gif .');
+			alert( msgErroExt );
+
+			arquivoInput.value = '';
+
+			return false;
+
+		}else{
+
+			if ( arquivoInput.files && arquivoInput.files[0] ) {
+
+				/*var reader = new FileReader();
+
+				reader.onload = function(e) {
+
+					document.getElementById('visualizarImagem').innerHTML = '';
+
+				};
+
+				reader.readAsDataURL(arquivoInput.files[0]);
+
+				console.log(arquivoInput.files[0].size / 1024 / 1024);
+
+				console.log(arquivoInput.files[0].size);*/
+
+				if (arquivoInput.files[0].size > tamanhoPermitido) { 
+
+					alert( msgErroTamArq );
+
+					arquivoInput.value = '';
+
+					return false;
+
+				}
+
+			}
+
+		}
+
+	}
+
+	const campoCpf = document.getElementById('cpf');
+	campoCpf.addEventListener('keyup', formatarCPF);
+
+	function formatarCPF(e){
+		var v=e.target.value.replace(/\D/g,"");
+		v=v.replace(/(\d{3})(\d)/,"$1.$2");
+		v=v.replace(/(\d{3})(\d)/,"$1.$2");
+		v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+		e.target.value = v;
+	}
+
+	const campoDataNascimento = document.getElementById('data_nascimento');
+	campoDataNascimento.addEventListener('keyup', formatarData);
+
+	function formatarData(e){
+		var v=e.target.value.replace(/\D/g,"");
+		v=v.replace(/(\d{2})(\d)/,"$1/$2") 
+		v=v.replace(/(\d{2})(\d)/,"$1/$2") 
+		e.target.value = v;
+	}
+
+	const campoTelefone = document.getElementById('telefone');
+	campoTelefone.addEventListener('keyup', formatarTelefone);
+
+	function formatarTelefone(e){
+		var v=e.target.value.replace(/\D/g,"");
+		v=v.replace(/^(\d\d)(\d)/g,"($1)$2"); 
+		v=v.replace(/(\d{5})(\d)/,"$1-$2");    
+		e.target.value = v;
+	}
+
+</script>
+
 
 
   <!-- JAVASCRIPTS -->
