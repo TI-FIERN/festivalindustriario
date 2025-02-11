@@ -146,7 +146,7 @@
 	}*/
 	
 
-	$sql = "INSERT INTO interessados (categoria,
+	$sql = "INSERT INTO interessados_2025 (categoria,
 										polo,
 										tipo_inscricao,
 										nome,

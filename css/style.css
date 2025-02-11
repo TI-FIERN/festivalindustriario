@@ -149,7 +149,7 @@ ul.social-links li a i {
 
 .overlay-dark:before {
   content: "";
-  background: -webkit-linear-gradient(-45deg, #1e5799 0%, #1d1546 0%, #1a0b25 100%, #207cca 100%);
+  /*background: -webkit-linear-gradient(-45deg, #1e5799 0%, #1d1546 0%, #1a0b25 100%, #207cca 100%);*/
   opacity: 0.75;
   position: absolute;
   top: 0;
