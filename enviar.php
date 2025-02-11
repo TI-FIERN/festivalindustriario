@@ -1,5 +1,8 @@
 <?php
-	if (session_status() !== PHP_SESSION_ACTIVE) {
+	ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    
+    if (session_status() !== PHP_SESSION_ACTIVE) {
 		session_start();
 	}
 	
@@ -19,21 +22,32 @@
 
 
 	$categoria = !empty($_POST['categoria']) ? $_POST['categoria'] : "CATEGORIA I";
-	$polo = $_POST['polo'];
-	$tipo_inscricao = mb_convert_encoding($_POST['tipo_inscricao'],"Windows-1252","UTF-8");
-    $nome = mb_convert_encoding($_POST['nome'], "Windows-1252","UTF-8");
-	$nome_artistico = mb_convert_encoding($_POST['nome_artistico'], "Windows-1252","UTF-8");
+	//$polo = mb_convert_encoding($_POST['polo'], "ISO-8859-1","UTF-8");
+    $polo = $_POST['polo'];
+	//$tipo_inscricao = mb_convert_encoding($_POST['tipo_inscricao'],"ISO-8859-1","UTF-8");
+    $tipo_inscricao = $_POST['tipo_inscricao'];
+    //$nome = mb_convert_encoding($_POST['nome'], "ISO-8859-1","UTF-8");
+    $nome = $_POST['nome'];
+	//$nome_artistico = mb_convert_encoding($_POST['nome_artistico'], "ISO-8859-1","UTF-8");
+    $nome_artistico = $_POST['nome_artistico'];
 	$cpf = $_POST['cpf'];
 	$data_nascimento = $_POST['data_nascimento'];
 	$telefone = $_POST['telefone'];
 	$email = $_POST['email'];
-	$endereco = mb_convert_encoding($_POST['endereco'], "Windows-1252","UTF-8");
-	$empresa = mb_convert_encoding($_POST['empresa'], "Windows-1252","UTF-8");
-	$cargo =  !empty($_POST['cargo']) ? mb_convert_encoding($_POST['cargo'], "Windows-1252","UTF-8") : "NÃO SE APLICA";
-	$matricula = !empty($_POST['matricula']) ? mb_convert_encoding($_POST['matricula'], "Windows-1252","UTF-8") : "NÃO SE APLICA";
-	$musica = mb_convert_encoding($_POST['musica'], "Windows-1252","UTF-8");
-	$compositor = mb_convert_encoding($_POST['compositor'], "Windows-1252","UTF-8");
-	$link_musica = mb_convert_encoding($_POST['link_youtube'], "Windows-1252","UTF-8");
+	//$endereco = mb_convert_encoding($_POST['endereco'], "ISO-8859-1","UTF-8");
+    $endereco = $_POST['endereco'];
+	//$empresa = mb_convert_encoding($_POST['empresa'], "ISO-8859-1","UTF-8");
+    $empresa = $_POST['empresa'];
+	//$cargo =  !empty($_POST['cargo']) ? mb_convert_encoding($_POST['cargo'], "ISO-8859-1","UTF-8") : "NÃO SE APLICA";
+    $cargo =  !empty($_POST['cargo']) ? $_POST['cargo'] : "NÃO SE APLICA";
+	//$matricula = !empty($_POST['matricula']) ? mb_convert_encoding($_POST['matricula'], "ISO-8859-1","UTF-8") : "NÃO SE APLICA";
+    $matricula = !empty($_POST['matricula']) ? $_POST['matricula'] : "NÃO SE APLICA";
+	//$musica = mb_convert_encoding($_POST['musica'], "ISO-8859-1","UTF-8");
+    $musica = $_POST['musica'];
+	//$compositor = mb_convert_encoding($_POST['compositor'], "ISO-8859-1","UTF-8");
+    $compositor = $_POST['compositor'];
+	//$link_musica = mb_convert_encoding($_POST['link_youtube'], "ISO-8859-1","UTF-8");
+    $link_musica = $_POST['link_youtube'];
 	/*$id_profissional = $_FILES['id_profissional']['name'];
 	$rg_cnh = $_FILES['rg_cnh']['name'];
 	$contrato_social = $_FILES['contrato_social']['name'];
@@ -146,7 +160,7 @@
 	}*/
 	
 
-	$sql = "INSERT INTO interessados (categoria,
+	$sql = "INSERT INTO interessados_2025 (categoria,
 										polo,
 										tipo_inscricao,
 										nome,
