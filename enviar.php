@@ -1,5 +1,8 @@
 <?php
-	if (session_status() !== PHP_SESSION_ACTIVE) {
+	ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    
+    if (session_status() !== PHP_SESSION_ACTIVE) {
 		session_start();
 	}
 	
@@ -9,31 +12,50 @@
     $dbname = "db_festival_industriario_sesi";
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+    try{
+        //$conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new PDO("mysql:host={$servername};dbname={$dbname}", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    }catch( PDOException $e ){
+        die( "Connection Error: ".$e->getMessage() );
+
+    }
 
     
 	// Check connection
-	if ($conn->connect_error) {
+	/*if ($conn->connect_error) {
 	  die("Connection failed: " . $conn->connect_error);
-	}
+	}*/
 
 
 	$categoria = !empty($_POST['categoria']) ? $_POST['categoria'] : "CATEGORIA I";
-	$polo = $_POST['polo'];
-	$tipo_inscricao = mb_convert_encoding($_POST['tipo_inscricao'],"Windows-1252","UTF-8");
-    $nome = mb_convert_encoding($_POST['nome'], "Windows-1252","UTF-8");
-	$nome_artistico = mb_convert_encoding($_POST['nome_artistico'], "Windows-1252","UTF-8");
+	//$polo = mb_convert_encoding($_POST['polo'], "ISO-8859-1","UTF-8");
+    $polo = $_POST['polo'];
+	//$tipo_inscricao = mb_convert_encoding($_POST['tipo_inscricao'],"ISO-8859-1","UTF-8");
+    $tipo_inscricao = $_POST['tipo_inscricao'];
+    //$nome = mb_convert_encoding($_POST['nome'], "ISO-8859-1","UTF-8");
+    $nome = $_POST['nome'];
+	//$nome_artistico = mb_convert_encoding($_POST['nome_artistico'], "ISO-8859-1","UTF-8");
+    $nome_artistico = $_POST['nome_artistico'];
 	$cpf = $_POST['cpf'];
 	$data_nascimento = $_POST['data_nascimento'];
 	$telefone = $_POST['telefone'];
 	$email = $_POST['email'];
-	$endereco = mb_convert_encoding($_POST['endereco'], "Windows-1252","UTF-8");
-	$empresa = mb_convert_encoding($_POST['empresa'], "Windows-1252","UTF-8");
-	$cargo =  !empty($_POST['cargo']) ? mb_convert_encoding($_POST['cargo'], "Windows-1252","UTF-8") : "NÃO SE APLICA";
-	$matricula = !empty($_POST['matricula']) ? mb_convert_encoding($_POST['matricula'], "Windows-1252","UTF-8") : "NÃO SE APLICA";
-	$musica = mb_convert_encoding($_POST['musica'], "Windows-1252","UTF-8");
-	$compositor = mb_convert_encoding($_POST['compositor'], "Windows-1252","UTF-8");
-	$link_musica = mb_convert_encoding($_POST['link_youtube'], "Windows-1252","UTF-8");
+	//$endereco = mb_convert_encoding($_POST['endereco'], "ISO-8859-1","UTF-8");
+    $endereco = $_POST['endereco'];
+	//$empresa = mb_convert_encoding($_POST['empresa'], "ISO-8859-1","UTF-8");
+    $empresa = $_POST['empresa'];
+	//$cargo =  !empty($_POST['cargo']) ? mb_convert_encoding($_POST['cargo'], "ISO-8859-1","UTF-8") : "NÃO SE APLICA";
+    $cargo =  !empty($_POST['cargo']) ? $_POST['cargo'] : "NÃO SE APLICA";
+	//$matricula = !empty($_POST['matricula']) ? mb_convert_encoding($_POST['matricula'], "ISO-8859-1","UTF-8") : "NÃO SE APLICA";
+    $matricula = !empty($_POST['matricula']) ? $_POST['matricula'] : "NÃO SE APLICA";
+	//$musica = mb_convert_encoding($_POST['musica'], "ISO-8859-1","UTF-8");
+    $musica = $_POST['musica'];
+	//$compositor = mb_convert_encoding($_POST['compositor'], "ISO-8859-1","UTF-8");
+    $compositor = $_POST['compositor'];
+	//$link_musica = mb_convert_encoding($_POST['link_youtube'], "ISO-8859-1","UTF-8");
+    $link_musica = $_POST['link_youtube'];
 	/*$id_profissional = $_FILES['id_profissional']['name'];
 	$rg_cnh = $_FILES['rg_cnh']['name'];
 	$contrato_social = $_FILES['contrato_social']['name'];
@@ -146,7 +168,7 @@
 	}*/
 	
 
-	$sql = "INSERT INTO interessados_2025 (categoria,
+	/*$sql = "INSERT INTO interessados_2025 (categoria,
 										polo,
 										tipo_inscricao,
 										nome,
@@ -196,18 +218,104 @@
 										'$doc_dependente_nome',
 										'$link_video_candidato',
 										'$video_candidato_nome',
-										'$letra_cifrada_nome')";
+										'$letra_cifrada_nome')";*/
 
+$sql = "INSERT INTO interessados_2025 (categoria,
+                                        polo,
+                                        tipo_inscricao,
+                                        nome,
+                                        nome_artistico,
+                                        cpf,
+                                        data_nascimento,
+                                        telefone,
+                                        email,
+                                        endereco,
+                                        empresa,
+                                        cargo,
+                                        matricula,
+                                        musica,
+                                        compositor,
+                                        link_musica,
+                                        id_profissional,
+                                        rg_cnh,
+                                        rg_cnh_lado2,
+                                        contrato_social,
+                                        comprovante_residencial,
+                                        doc_dependente,
+                                        link_video_candidato,
+                                        video_candidato,
+                                        letra_cifrada)
 
+                                VALUES (:categoria,
+                                        :polo,
+                                        :tipo_inscricao,
+                                        :nome,
+                                        :nome_artistico,
+                                        :cpf,
+                                        :data_nascimento,
+                                        :telefone,
+                                        :email,
+                                        :endereco,
+                                        :empresa,
+                                        :cargo,
+                                        :matricula,
+                                        :musica,
+                                        :compositor,
+                                        :link_musica,
+                                        :id_profissional_nome,
+                                        :rg_cnh_lado1_nome,
+                                        :rg_cnh_lado2_nome,
+                                        :contrato_social_nome,
+                                        :comprovante_residencial_nome,
+                                        :doc_dependente_nome,
+                                        :link_video_candidato,
+                                        :video_candidato_nome,
+                                        :letra_cifrada_nome)";
+    try{
+        $stmt = $conn->prepare( $sql );
+        $stmt->execute(array(
+                                    ':categoria' => $categoria,
+                                    ':polo' => $polo,
+                                    ':tipo_inscricao' => $tipo_inscricao,
+                                    ':nome' => $nome,
+                                    ':nome_artistico' => $nome_artistico,
+                                    ':cpf' => $cpf,
+                                    ':data_nascimento' => $data_nascimento,
+                                    ':telefone' => $telefone,
+                                    ':email' => $email,
+                                    ':endereco' => $endereco,
+                                    ':empresa' => $empresa,
+                                    ':cargo' => $cargo,
+                                    ':matricula' => $matricula,
+                                    ':musica' => $musica,
+                                    ':compositor' => $compositor,
+                                    ':link_musica' => $link_musica,
+                                    ':id_profissional_nome' => $id_profissional_nome,
+                                    ':rg_cnh_lado1_nome' => $rg_cnh_lado1_nome,
+                                    ':rg_cnh_lado2_nome' => $rg_cnh_lado2_nome,
+                                    ':contrato_social_nome' => $contrato_social_nome,
+                                    ':comprovante_residencial_nome' => $comprovante_residencial_nome,
+                                    ':doc_dependente_nome' => $doc_dependente_nome,
+                                    ':link_video_candidato' => $link_video_candidato,
+                                    ':video_candidato_nome' => $video_candidato_nome,
+                                    ':letra_cifrada_nome' => $letra_cifrada_nome
+        ));
 
-	if ($conn->query($sql) === TRUE) {
+        header('Location: index.html?msg=success');
+    }catch( PDOException $e ){
+        header('Location: index.html?msg=error');
+        throw new Exception( "Error: {$e->getMessage()}" );
+
+    }
+
+	/*if ($conn->query($sql) === TRUE) {
 	  header('Location: index.html?msg=success');
 	} else {
 		
 	  header('Location: index.html?msg=error');
 	}
 	
-	$conn->close();
+	$conn->close();*/
 	
 	
 	

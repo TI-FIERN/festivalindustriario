@@ -1099,6 +1099,8 @@ select.form-control:not([size]):not([multiple]) {
 }
 .about .content-block {
   margin-left: 15px;
+  /*Ajustando o alinhamento do conteúdo da seção objetivo*/
+  text-align: justify;
 }
 @media (max-width: 767px) {
   .about .content-block {
@@ -1429,6 +1431,10 @@ select.form-control:not([size]):not([multiple]) {
 }
 .schedule .schedule-contents .schedule-item li.schedule-details .block:hover span.name {
   color: #0299a4;
+}
+/*Ajuste do alinhamento do conteúdo da agenda e das publicações*/
+li.schedule-details .block {
+  text-align: left;
 }
 .schedule .download-button {
   padding-top: 40px;
@@ -2318,6 +2324,11 @@ select.form-control:not([size]):not([multiple]) {
   font-family: "Montserrat", sans-serif;
   float: right;
   color: white;
+}
+
+/*Ajuste do alinhamento do conteúdo da seção entendaofestival*/
+#entendaofestival .block {
+  text-align: justify;
 }
 
 .speakers-full-width {
