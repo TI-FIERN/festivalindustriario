@@ -12,13 +12,21 @@
     $dbname = "db_festival_industriario_sesi";
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+    try{
+        //$conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new PDO("mysql:host={$servername};dbname={$dbname}", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    }catch( PDOException $e ){
+        die( "Connection Error: ".$e->getMessage() );
+
+    }
 
     
 	// Check connection
-	if ($conn->connect_error) {
+	/*if ($conn->connect_error) {
 	  die("Connection failed: " . $conn->connect_error);
-	}
+	}*/
 
 
 	$categoria = !empty($_POST['categoria']) ? $_POST['categoria'] : "CATEGORIA I";
@@ -160,7 +168,7 @@
 	}*/
 	
 
-	$sql = "INSERT INTO interessados_2025 (categoria,
+	/*$sql = "INSERT INTO interessados_2025 (categoria,
 										polo,
 										tipo_inscricao,
 										nome,
@@ -210,18 +218,104 @@
 										'$doc_dependente_nome',
 										'$link_video_candidato',
 										'$video_candidato_nome',
-										'$letra_cifrada_nome')";
+										'$letra_cifrada_nome')";*/
 
+$sql = "INSERT INTO interessados_2025 (categoria,
+                                        polo,
+                                        tipo_inscricao,
+                                        nome,
+                                        nome_artistico,
+                                        cpf,
+                                        data_nascimento,
+                                        telefone,
+                                        email,
+                                        endereco,
+                                        empresa,
+                                        cargo,
+                                        matricula,
+                                        musica,
+                                        compositor,
+                                        link_musica,
+                                        id_profissional,
+                                        rg_cnh,
+                                        rg_cnh_lado2,
+                                        contrato_social,
+                                        comprovante_residencial,
+                                        doc_dependente,
+                                        link_video_candidato,
+                                        video_candidato,
+                                        letra_cifrada)
 
+                                VALUES (:categoria,
+                                        :polo,
+                                        :tipo_inscricao,
+                                        :nome,
+                                        :nome_artistico,
+                                        :cpf,
+                                        :data_nascimento,
+                                        :telefone,
+                                        :email,
+                                        :endereco,
+                                        :empresa,
+                                        :cargo,
+                                        :matricula,
+                                        :musica,
+                                        :compositor,
+                                        :link_musica,
+                                        :id_profissional_nome,
+                                        :rg_cnh_lado1_nome,
+                                        :rg_cnh_lado2_nome,
+                                        :contrato_social_nome,
+                                        :comprovante_residencial_nome,
+                                        :doc_dependente_nome,
+                                        :link_video_candidato,
+                                        :video_candidato_nome,
+                                        :letra_cifrada_nome)";
+    try{
+        $stmt = $conn->prepare( $sql );
+        $stmt->execute(array(
+                                    ':categoria' => $categoria,
+                                    ':polo' => $polo,
+                                    ':tipo_inscricao' => $tipo_inscricao,
+                                    ':nome' => $nome,
+                                    ':nome_artistico' => $nome_artistico,
+                                    ':cpf' => $cpf,
+                                    ':data_nascimento' => $data_nascimento,
+                                    ':telefone' => $telefone,
+                                    ':email' => $email,
+                                    ':endereco' => $endereco,
+                                    ':empresa' => $empresa,
+                                    ':cargo' => $cargo,
+                                    ':matricula' => $matricula,
+                                    ':musica' => $musica,
+                                    ':compositor' => $compositor,
+                                    ':link_musica' => $link_musica,
+                                    ':id_profissional_nome' => $id_profissional_nome,
+                                    ':rg_cnh_lado1_nome' => $rg_cnh_lado1_nome,
+                                    ':rg_cnh_lado2_nome' => $rg_cnh_lado2_nome,
+                                    ':contrato_social_nome' => $contrato_social_nome,
+                                    ':comprovante_residencial_nome' => $comprovante_residencial_nome,
+                                    ':doc_dependente_nome' => $doc_dependente_nome,
+                                    ':link_video_candidato' => $link_video_candidato,
+                                    ':video_candidato_nome' => $video_candidato_nome,
+                                    ':letra_cifrada_nome' => $letra_cifrada_nome
+        ));
 
-	if ($conn->query($sql) === TRUE) {
+        header('Location: index.html?msg=success');
+    }catch( PDOException $e ){
+        header('Location: index.html?msg=error');
+        throw new Exception( "Error: {$e->getMessage()}" );
+
+    }
+
+	/*if ($conn->query($sql) === TRUE) {
 	  header('Location: index.html?msg=success');
 	} else {
 		
 	  header('Location: index.html?msg=error');
 	}
 	
-	$conn->close();
+	$conn->close();*/
 	
 	
 	
