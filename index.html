@@ -31,15 +31,15 @@
   <!-- CUSTOM CSS -->
   <link href="css/style.css" rel="stylesheet">
 
+  <!-- ICONS CONTACT CSS -->
+	<link href="css/contact-icon.css" rel="stylesheet">
+
   <!-- FAVICON -->
   <link href="images/favicon.png" rel="shortcut icon">
 
 </head>
 
-<body class="body-wrapper"  id="home">
-
-	
-
+<body class="body-wrapper" id="home">
 
 <!--========================================
 =            Navigation Section            =
@@ -713,7 +713,7 @@
 						</div>
 					</div>
 				</div>
-				<form action="enviar.php" method="post" enctype="multipart/form-data" class="row">
+				<form action="enviar.php" method="post" enctype="multipart/form-data" class="row" style="text-align: left;">
 					<!-- <input type="text" class="form-control main" placeholder="Your Name" required> -->
 					<div class="col-md-4">
 						<div class="form-group">
@@ -864,37 +864,67 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block text-center">
-          <div class="footer-logo">
-            <img src="images/sesi-cultura-branco.png" width="100" alt="SESI Cultura" class="img-fluid">
-          </div>          
+			<div class="footer-logo">
+				<img src="images/sesi-cultura-branco.png" width="100" alt="SESI Cultura" class="img-fluid">
+			</div>
+
+			<ul class="social-links-footer">
+				<li class="social-item">
+					<figure>
+						<img src="images/instagram.png" alt="Instagram">
+						<figcaption>
+							<a style="text-decoration: none;" href="https://www.instagram.com/sesirn/">
+								<h5>Instagram</h5>
+								<p>@SESIRN</p>
+							</a>
+						</figcaption>
+					</figure>
+				</li>
+				<li class="social-item">
+					<figure>
+						<img src="images/mail.png" alt="Email">
+						<figcaption>
+							<a style="text-decoration: none;" href="mailto:festivaldoindustriario@rn.sesi.org.br">
+								<h5>E-mail</h5>
+								<p>festivaldoindustriario@rn.sesi.org.br</p>
+							</a>
+						</figcaption>
+					</figure>
+				</li>
+				<li class="social-item">
+					<figure>
+						<img src="images/whatsapp.png" alt="WhatsApp">
+						<figcaption>
+							<a style="text-decoration: none;" href="">
+								<h5>Telefone e WhatsApp</h5>
+								<p>+55 84 3220-0465</p>
+								<!--<p>Atendimento de segunda a <br> sexta, das 8h às 18h</p>-->
+								<p>Atendimento de segunda a sexta, das 8h às 18h</p>
+							</a>
+						</figcaption>
+					</figure>
+				</li>
+			</ul>
         </div>
 
       </div>
     </div>
   </div>
 </footer>
-<!-- Subfooter -->
-<footer class="subfooter">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9 align-self-center">
-        <div class="copyright-text">
-          <p>Av. Senador Salgado Filho, 2860 - Lagoa Nova - Natal/RN - CEP: 59075-900</p>
-        </div>
-      </div>
-      <div class="col-md-3 text-right">
-        <ul class="social-links-footer list-inline">
-            <li class="list-inline-item">
-              <a href="https://facebook.com/sesirn" target="_blank"><i class="fa fa-facebook"></i></a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://instagram.com/sesirn" target="_blank"><i class="fa fa-instagram"></i></a>
-            </li>
-          </ul>
-      </div>
-    </div>
-  </div>
-</footer>
+	<!-- Subfooter -->
+	<footer class="subfooter">
+		<div class="container">
+			<div class="row">
+				<div style="align-content: center;" class="">
+					<div style="align-content: center;" class="copyright-text">
+						<p>Av. Senador Salgado Filho, 2860 - Lagoa Nova - Natal/RN - CEP: 59075-900</p>
+						<p class="mbr-text mb-0 mbr-fonts-style display-7">
+							© Copyright 2024 - Todos os direitos reservados<br>Desenvolvido por&nbsp;<strong>GSATI - FIERN</strong></p>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</footer>
 
 <!-- BEGIN GADWP v5.1.1.1 Universal Analytics - https://deconf.com/google-analytics-dashboard-wordpress/ -->
 <script>
@@ -936,9 +966,11 @@
 		if( tipoInscricaoSelect.value == 'INDUSTRIARIO' ){
 			document.getElementById('cargo').disabled = false;
 			document.getElementById('cargo').required = true;
+			document.getElementById('cargo').value = "";
 
 			document.getElementById('matricula').disabled = false;
 			document.getElementById('matricula').required = true;
+			document.getElementById('matricula').value = "";
 
 			document.getElementById('contrato_social_arquivo').disabled = true;
 			document.getElementById('contrato_social_arquivo').required = false;
@@ -949,9 +981,11 @@
 		}else if( tipoInscricaoSelect.value == 'EMPREGADOR' ){
 			document.getElementById('cargo').disabled = false;
 			document.getElementById('cargo').required = true;
+			document.getElementById('cargo').value = "";
 
 			document.getElementById('matricula').disabled = false;
 			document.getElementById('matricula').required = true;
+			document.getElementById('matricula').value= "";
 
 			document.getElementById('contrato_social_arquivo').disabled = false;
 			document.getElementById('contrato_social_arquivo').required = true;
