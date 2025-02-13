@@ -3179,3 +3179,14 @@ ul.pagination .active a {
   margin-bottom: 30px;
 }
 /*# sourceMappingURL=style.css.map */
+
+.social-circle{
+  width: 60px;
+  height: 60px;
+	font-size: 25px;
+	padding: 12px;
+	background: #FFF; 
+	-moz-border-radius: 50px; 
+	-webkit-border-radius: 50px; 
+	border-radius: 50px;
+}
