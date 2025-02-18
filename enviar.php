@@ -67,7 +67,7 @@
     $link_video_candidato = "";
 	
 	
-	$folder = 'files/'.$cpf;
+	$folder = 'files/interessados/'.$cpf;
 	if(!is_dir($folder)){
 		mkdir($folder, 0757);
 	}
