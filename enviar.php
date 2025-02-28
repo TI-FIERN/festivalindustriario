@@ -301,9 +301,9 @@ $sql = "INSERT INTO interessados_2025 (categoria,
                                     ':letra_cifrada_nome' => $letra_cifrada_nome
         ));
 
-        header('Location: index.html?msg=success');
+        header('Location: index.php?msg=success');
     }catch( PDOException $e ){
-        header('Location: index.html?msg=error');
+        header('Location: index.php?msg=error');
         throw new Exception( "Error: {$e->getMessage()}" );
 
     }

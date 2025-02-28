@@ -54,7 +54,7 @@
 <body class="body-wrapper" id="home">
 	<div class="end-0">
 		<div class="toast-container p-4" style="height: 7%; text-align: center; position: fixed; width: 100%; z-index: 15; margin-top: 6rem; justify-items: end;">	
-			<div class="toast bg-primary font-weight-bold border-0" data-autohide="true">
+			<div class="toast bg-primary font-weight-bold border-0" id="toastInscrioes" data-autohide="true">
 				<div class="toast-header">
 					<svg xmlns="http://www.w3.org/2000/svg"  style="width: 2rem;" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/></svg>
 					<strong class="mr-auto text-primary" style="padding-left: 1rem;">ATENÇÃO!!!!!!! INSCRIÇÕES</strong>
@@ -69,10 +69,31 @@
 			</div>
 		</div>
 	</div>
-	
-	
 
+	<div class="end-0">
+		<div class="toast-container p-4" style="height: 7%; text-align: center; position: fixed; width: 100%; z-index: 15; margin-top: 6rem; justify-items: end;">	
+			<div class="toast bg-primary font-weight-bold border-0" id="toastForm" data-autohide="true">
+				<div class="toast-header">
+					<svg xmlns="http://www.w3.org/2000/svg"  style="width: 2rem;" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/></svg>
+					<strong class="mr-auto text-primary" style="padding-left: 1rem;">PARABENS!!!!</strong>
+					<!--<small class="text-muted">5 mins ago</small>-->
+					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+				</div>
+				<div class="toast-body" style="text-align: justify;">
+				<h5>Seus dados foram enviados.</h5>
+				<h5>Caso não tenha inserido o link de sua versão do Youtube, envie-nos o arquivo de vídeo através de nosso WHATSAPP 8432046300</h5>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!--<div class="row mt-5">
+		<div class="col">
+			<h1 class="mb-3">Toast</h1>
+
+			<input type="button" value="Adicionar" id="add-toast" class="btn btn-primary" />
+		</div>
+	</div>-->
 
 <!--========================================
 =            Navigation Section            =
@@ -958,7 +979,7 @@
 
 					
 					<div class="col-12">
-						<button type="submit" class="btn btn-main-md" name="" value="ENVIAR">ENVIAR</button>
+						<button type="submit" class="btn btn-main-md" id="form-enviar" name="form-enviar" value="ENVIAR">ENVIAR</button>
 					</div>
 				</form>
 			</div>
@@ -1088,38 +1109,25 @@
 
 <script>
 	$(document).ready(function(){
-		$('.toast').toast({delay: 10000});
-		$('.toast').on('shown.bs.toast');
-		$('.toast').toast('show');
+		$('#toastInscrioes').toast({delay: 10000});
+		$('#toastInscrioes').on('shown.bs.toast');
+		$('#toastInscrioes').toast('show');
+
 
 		/*$('.toast').on('shown.bs.toast', function(){
 		alert('The toast is now fully shown.');
 	  });*/
 	});
 
+	$(document).ready(function(){
+		$('#form-enviar').on('click', () => {
+			$('#toastForm').toast({delay: 20000});
+			$('#toastForm').on('shown.bs.toast');
+			$('#toastForm').toast('show');
 
-	/*const toastElList = document.querySelectorAll(".toast");
-	const toastList = [...toastElList].map((toastEl) => {
-		const toast = new bootstrap.Toast(toastEl, {});
-		toast.show();
+		});
 	});
 
-	const btnToast = document.getElementById("btnToast");
-	btnToast.addEventListener("click", () => {
-		const toast = document.getElementById("toast");
-		const container = document.getElementById("toastContainer");
-		const novoToast = toast.cloneNode(true);
-		novoToast.lastElementChild.innerHTML = "Mensagem em " + Date();
-		container.appendChild(novoToast);
-		const bsToast = new bootstrap.Toast(novoToast, {});
-		bsToast.show();
-	});
-
-	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-	const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
-
-	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-	const popoverList = [...popoverTriggerList].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));*/
 </script>
 
 <script type='text/javascript' /*src='js/jquery.js'*/>
